@@ -51,11 +51,11 @@
 * 进程被动上下文切换, 通用标签
 * 每秒被动上下文切换查询表达式: `rate(process_ctx_switch_involuntary_count[5m])`
 
-### process_fd_count
+### process_fds_count
 * 进程文件描述符数量, 通用标签
 * 查询表达式 `process_fds_count`
 
-### process_thread_count
+### process_threads_count
 * 进程线程数量, 通用标签
 * 查询表达式 `process_threads_count`
 
