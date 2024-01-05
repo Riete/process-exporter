@@ -21,8 +21,10 @@ func main() {
 
 	s := storage.New(strings.Split(*pnc, ","))
 	go func() {
-		s.SyncOrDie()
-		time.Sleep(time.Minute)
+		for {
+			s.SyncOrDie()
+			time.Sleep(5 * time.Minute)
+		}
 	}()
 	registry := prometheus.NewRegistry()
 	registry.MustRegister(
