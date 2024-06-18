@@ -34,7 +34,7 @@ func (s *Storage) SyncOrDie() {
 	for _, i := range p {
 		ppid, err = i.Ppid()
 		if err != nil {
-			panic(err)
+			continue
 		}
 		// do not track systemd(1) and kernel thread
 		if ppid == 0 || ppid == 2 {
