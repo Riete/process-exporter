@@ -54,22 +54,23 @@ func (s *Storage) SyncOrDie() {
 
 // shouldFetchMetric exclude first then include
 func (s *Storage) shouldFetchMetric(cmdline string) bool {
-	for _, i := range s.exclude {
-		if strings.Contains(cmdline, i) {
-			return false
+	if len(s.exclude) > 0 {
+		for _, i := range s.exclude {
+			if i != "" && strings.Contains(cmdline, i) {
+				return false
+			}
 		}
 	}
-	if len(s.include) == 0 {
-		return true
-	}
-	found := false
-	for _, i := range s.include {
-		if strings.Contains(cmdline, i) {
-			found = true
-			break
+
+	if len(s.include) > 0 {
+		for _, i := range s.include {
+			if i != "" && strings.Contains(cmdline, i) {
+				return true
+			}
 		}
+		return false
 	}
-	return found
+	return true
 }
 
 func (s *Storage) ProcessCmdline(pid int32) string {
