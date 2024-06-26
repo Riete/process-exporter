@@ -64,11 +64,13 @@
 * 查询表达式 `process_total_count`
 
 ## 启动应用
-`./process-exporter -listen-port 10921 -process-name-contains name1,name2,name3`
+`./process-exporter -listen-port 10921 -cmdline-include name1,name2,name3 -cmdline-exclude name1,name2,name3`
 
 ### 参数说明
 * `listen-port`: 监听端口, 默认10921
-* `process-name-contains`:进程名称匹配关键字, 不设置则收集所有进程, 设置的话只匹配进程名称含有关键字的进程, 多个关键字以`,`隔开, 推荐设置,全量收集比较耗资源
+* `cmdline-include`:进程名称匹配关键字, 不设置则收集所有进程, 设置的话**只会**收集进程名称含有关键字的进程, 多个关键字以`,`隔开, 推荐设置,全量收集比较耗资源
+* `cmdline-exclude`:进程名称匹配关键字, 不设置则收集所有进程, 设置的话**不会**收集进程名称含有关键字的进程, 多个关键字以`,`隔开, 推荐设置,全量收集比较耗资源
+* `cmdline-include`和`cmdline-exclude`同时设置的话, `cmdline-exclude`优先生效
 
 ## Grafana
 可直接导入`Process Exporter-grafana.json`

@@ -11,7 +11,8 @@ type Storage struct {
 	p        []*process.Process
 	cmdlines sync.Map
 	l        sync.RWMutex
-	search   []string
+	include  []string
+	exclude  []string
 	total    int
 }
 
@@ -44,18 +45,31 @@ func (s *Storage) SyncOrDie() {
 		if err != nil {
 			continue
 		}
-		found := false
-		for _, c := range s.search {
-			if strings.Contains(cmdline, c) {
-				found = true
-				break
-			}
-		}
-		if found {
+		if s.shouldFetchMetric(cmdline) {
 			s.p = append(s.p, i)
 			s.cmdlines.Store(i.Pid, cmdline)
 		}
 	}
+}
+
+// shouldFetchMetric exclude first then include
+func (s *Storage) shouldFetchMetric(cmdline string) bool {
+	for _, i := range s.exclude {
+		if strings.Contains(cmdline, i) {
+			return false
+		}
+	}
+	if len(s.include) == 0 {
+		return true
+	}
+	found := false
+	for _, i := range s.include {
+		if strings.Contains(cmdline, i) {
+			found = true
+			break
+		}
+	}
+	return found
 }
 
 func (s *Storage) ProcessCmdline(pid int32) string {
@@ -76,6 +90,6 @@ func (s *Storage) Total() int {
 	return s.total
 }
 
-func New(search []string) *Storage {
-	return &Storage{search: search}
+func New(include, exclude []string) *Storage {
+	return &Storage{include: include, exclude: exclude}
 }

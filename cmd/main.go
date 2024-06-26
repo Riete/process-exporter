@@ -16,10 +16,11 @@ import (
 
 func main() {
 	listenPort := flag.String("listen-port", "10921", "listen port")
-	pnc := flag.String("process-name-contains", "", "fuzzy match process, ',' separated")
+	nameInclude := flag.String("cmdline-include", "", "fuzzy include process, ',' separated")
+	nameExclude := flag.String("cmdline-exclude", "", "fuzzy exclude process, ',' separated")
 	flag.Parse()
 
-	s := storage.New(strings.Split(*pnc, ","))
+	s := storage.New(strings.Split(*nameInclude, ","), strings.Split(*nameExclude, ","))
 	go func() {
 		for {
 			s.SyncOrDie()
