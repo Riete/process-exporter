@@ -47,13 +47,15 @@ func (n NetworkCollector) Collect(metrics chan<- prometheus.Metric) {
 	go n.s.Fetch(ch)
 	for p := range ch {
 		cmdline := n.s.ProcessCmdline(p.Pid)
-		conn, err := p.Connections()
 		pid := strconv.Itoa(int(p.Pid))
+
+		conn, err := p.Connections()
 		if err != nil {
 			log.Printf("Get [%s] Process Network Connections Error: %v\n", cmdline, err)
 		} else {
 			metrics <- prometheus.MustNewConstMetric(networkConnection, prometheus.GaugeValue, float64(len(conn)), pid, cmdline)
 		}
+
 		pn, err := procfs.NewProc(int(p.Pid))
 		if err != nil {
 			log.Printf("Get [%s] Process Network Traffic Error: %v\n", cmdline, err)

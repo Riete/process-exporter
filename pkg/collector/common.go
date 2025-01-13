@@ -60,26 +60,29 @@ func (c CommonCollector) Collect(metrics chan<- prometheus.Metric) {
 	go c.s.Fetch(ch)
 	for p := range ch {
 		cmdline := c.s.ProcessCmdline(p.Pid)
-		cw, err := p.NumCtxSwitches()
-		if err != nil {
-			log.Printf("Get [%s] Process CTX Switches Error: %v\n", cmdline, err)
-			continue
-		}
-		fds, err := p.NumFDs()
-		if err != nil {
-			log.Printf("Get [%s] Process FDs Error: %v\n", cmdline, err)
-			continue
-		}
-		threads, err := p.NumThreads()
-		if err != nil {
-			log.Printf("Get [%s] Process Threads Error: %v\n", cmdline, err)
-			continue
-		}
 		pid := strconv.Itoa(int(p.Pid))
-		metrics <- prometheus.MustNewConstMetric(ctxSwitchVoluntary, prometheus.CounterValue, float64(cw.Voluntary), pid, cmdline)
-		metrics <- prometheus.MustNewConstMetric(ctxSwitchInVoluntary, prometheus.CounterValue, float64(cw.Involuntary), pid, cmdline)
-		metrics <- prometheus.MustNewConstMetric(fd, prometheus.GaugeValue, float64(fds), pid, cmdline)
-		metrics <- prometheus.MustNewConstMetric(thread, prometheus.GaugeValue, float64(threads), pid, cmdline)
+
+		cw, err := p.NumCtxSwitches()
+		if err == nil {
+			metrics <- prometheus.MustNewConstMetric(ctxSwitchVoluntary, prometheus.CounterValue, float64(cw.Voluntary), pid, cmdline)
+			metrics <- prometheus.MustNewConstMetric(ctxSwitchInVoluntary, prometheus.CounterValue, float64(cw.Involuntary), pid, cmdline)
+		} else {
+			log.Printf("Get [%s] Process CTX Switches Error: %v\n", cmdline, err)
+		}
+
+		fds, err := p.NumFDs()
+		if err == nil {
+			metrics <- prometheus.MustNewConstMetric(fd, prometheus.GaugeValue, float64(fds), pid, cmdline)
+		} else {
+			log.Printf("Get [%s] Process FDs Error: %v\n", cmdline, err)
+		}
+
+		threads, err := p.NumThreads()
+		if err == nil {
+			metrics <- prometheus.MustNewConstMetric(thread, prometheus.GaugeValue, float64(threads), pid, cmdline)
+		} else {
+			log.Printf("Get [%s] Process Threads Error: %v\n", cmdline, err)
+		}
 	}
 	metrics <- prometheus.MustNewConstMetric(processCount, prometheus.GaugeValue, float64(c.s.Total()))
 }

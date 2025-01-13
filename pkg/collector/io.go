@@ -52,12 +52,12 @@ func (i IOCollector) Collect(metrics chan<- prometheus.Metric) {
 	go i.s.Fetch(ch)
 	for p := range ch {
 		cmdline := i.s.ProcessCmdline(p.Pid)
+		pid := strconv.Itoa(int(p.Pid))
 		iostat, err := p.IOCounters()
 		if err != nil {
 			log.Printf("Get [%s] Process IO Stats Error: %v\n", cmdline, err)
 			continue
 		}
-		pid := strconv.Itoa(int(p.Pid))
 		metrics <- prometheus.MustNewConstMetric(readCount, prometheus.CounterValue, float64(iostat.ReadCount), pid, cmdline)
 		metrics <- prometheus.MustNewConstMetric(writeCount, prometheus.CounterValue, float64(iostat.WriteCount), pid, cmdline)
 		metrics <- prometheus.MustNewConstMetric(readBytes, prometheus.CounterValue, float64(iostat.ReadBytes), pid, cmdline)

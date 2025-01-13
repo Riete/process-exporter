@@ -31,12 +31,12 @@ func (m MemoryCollector) Collect(metrics chan<- prometheus.Metric) {
 	go m.s.Fetch(ch)
 	for p := range ch {
 		cmdline := m.s.ProcessCmdline(p.Pid)
+		pid := strconv.Itoa(int(p.Pid))
 		mem, err := p.MemoryInfo()
 		if err != nil {
 			log.Printf("Get [%s] Process Memory Error: %v\n", cmdline, err)
 			continue
 		}
-		pid := strconv.Itoa(int(p.Pid))
 		metrics <- prometheus.MustNewConstMetric(memoryRss, prometheus.GaugeValue, float64(mem.RSS), pid, cmdline)
 	}
 }
