@@ -13,7 +13,7 @@ var (
 	memoryRss = prometheus.NewDesc(
 		prometheus.BuildFQName(namespace, memorySubsystem, "rss_bytes"),
 		"Process rss memory bytes",
-		[]string{"pid", "cmdline"},
+		commonLabels,
 		nil,
 	)
 )

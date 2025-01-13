@@ -14,7 +14,7 @@ import (
 var cputime = prometheus.NewDesc(
 	prometheus.BuildFQName(namespace, cpuSubsystem, "seconds_total"),
 	"Process cpu seconds in each mode.",
-	[]string{"pid", "cmdline", "mode"},
+	append(commonLabels, "mode"),
 	nil,
 )
 

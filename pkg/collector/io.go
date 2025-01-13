@@ -13,25 +13,25 @@ var (
 	readCount = prometheus.NewDesc(
 		prometheus.BuildFQName(namespace, ioSubsystem, "read_count"),
 		"Process io read count",
-		[]string{"pid", "cmdline"},
+		commonLabels,
 		nil,
 	)
 	writeCount = prometheus.NewDesc(
 		prometheus.BuildFQName(namespace, ioSubsystem, "write_count"),
 		"Process io write count",
-		[]string{"pid", "cmdline"},
+		commonLabels,
 		nil,
 	)
 	readBytes = prometheus.NewDesc(
 		prometheus.BuildFQName(namespace, ioSubsystem, "read_bytes"),
 		"Process io read bytes",
-		[]string{"pid", "cmdline"},
+		commonLabels,
 		nil,
 	)
 	writeBytes = prometheus.NewDesc(
 		prometheus.BuildFQName(namespace, ioSubsystem, "write_bytes"),
 		"Process io write bytes",
-		[]string{"pid", "cmdline"},
+		commonLabels,
 		nil,
 	)
 )

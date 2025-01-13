@@ -10,3 +10,5 @@ const (
 	fdSubsystem        = "fds"
 	threadSubsystem    = "threads"
 )
+
+var commonLabels = []string{"pid", "cmdline"}

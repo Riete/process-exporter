@@ -13,25 +13,25 @@ var (
 	ctxSwitchVoluntary = prometheus.NewDesc(
 		prometheus.BuildFQName(namespace, ctxSwitchSubsystem, "voluntary_count"),
 		"Process ctx switch voluntary count",
-		[]string{"pid", "cmdline"},
+		commonLabels,
 		nil,
 	)
 	ctxSwitchInVoluntary = prometheus.NewDesc(
 		prometheus.BuildFQName(namespace, ctxSwitchSubsystem, "involuntary_count"),
 		"Process ctx switch involuntary count",
-		[]string{"pid", "cmdline"},
+		commonLabels,
 		nil,
 	)
 	fd = prometheus.NewDesc(
 		prometheus.BuildFQName(namespace, fdSubsystem, "count"),
 		"Process fd count",
-		[]string{"pid", "cmdline"},
+		commonLabels,
 		nil,
 	)
 	thread = prometheus.NewDesc(
 		prometheus.BuildFQName(namespace, threadSubsystem, "count"),
 		"Process thread count",
-		[]string{"pid", "cmdline"},
+		commonLabels,
 		nil,
 	)
 	processCount = prometheus.NewDesc(

@@ -11,13 +11,13 @@
 ### process_cpu_seconds_total
 * 进程cpu使用时间, 除通用标签外, 有个`mode`标签, 取值`iowait`,`user`,`system`
 * 查询cpu使用率
-  * 按cpu类型: `sum(rate(process_cpu_seconds_total[5m])) by (pid, cmdline, mode)`
-  * 总cpu:  `sum(rate(process_cpu_seconds_total[5m])) by (pid, cmdline)`
+  * 按cpu类型: `sum(rate(process_cpu_seconds_total[1m])) by (pid, cmdline, mode)`
+  * 总cpu:  `sum(rate(process_cpu_seconds_total[1m])) by (pid, cmdline)`
   
 
 ## Memory Metrics
 ### process_memory_rss_bytes
-* 进程RSS内存使用量, 通用标签
+* 进程RSS内存使用量, 通用标签m
 * 查询表达式: `process_memory_rss_bytes`
 
 ## Network Metrics
@@ -25,31 +25,40 @@
 * 进程网络连接数, 通用标签
 * 查询表达式: `process_network_connections`
 
+### process_network_receive_bytes_total
+* 进程网络接受流量, 通用标签
+* 查询表达式: `rate(process_network_receive_bytes_total[1m])`
+
+### process_network_transmit_bytes_total
+* 进程网络发送流量, 通用标签
+* 查询表达式: `rate(process_network_transmit_bytes_total[1m])`
+
+
 ## IO Metrics
 ### process_io_read_count
 * 进程读io总量, 通用标签
-* read iops查询表达式: `rate(process_io_read_count[5m])`
+* read iops查询表达式: `rate(process_io_read_count[1m])`
 
 ### process_io_write_count
 * 进程写io总量, 通用标签
-* write iops查询表达式: `rate(process_io_write_count[5m])`
+* write iops查询表达式: `rate(process_io_write_count[1m])`
 
 ### process_io_read_bytes
 * 进程读bytes总量, 通用标签
-* rBytes/s查询表达式: `rate(process_io_read_bytes[5m])`
+* rBytes/s查询表达式: `rate(process_io_read_bytes[1m])`
 
 ### process_io_write_count
 * 进程写bytes总量, 通用标签
-* wBytes/s查询表达式: `rate(process_io_write_bytes[5m])`
+* wBytes/s查询表达式: `rate(process_io_write_bytes[1m])`
 
 ## Common Metrics
 ### process_ctx_switch_voluntary_count
 * 进程主动上下文切换, 通用标签
-* 每秒主动上下文切换查询表达式: `rate(process_ctx_switch_voluntary_count[5m])`
+* 每秒主动上下文切换查询表达式: `rate(process_ctx_switch_voluntary_count[1m])`
 
 ### process_ctx_switch_involuntary_count
 * 进程被动上下文切换, 通用标签
-* 每秒被动上下文切换查询表达式: `rate(process_ctx_switch_involuntary_count[5m])`
+* 每秒被动上下文切换查询表达式: `rate(process_ctx_switch_involuntary_count[1m])`
 
 ### process_fds_count
 * 进程文件描述符数量, 通用标签
