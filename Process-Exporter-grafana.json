@@ -271,7 +271,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "rate(process_io_read_count{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
+          "expr": "rate(process_io_read_count_total{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - read iops",
           "queryType": "randomWalk",
@@ -280,7 +280,7 @@
         },
         {
           "editorMode": "code",
-          "expr": "rate(process_io_write_count{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
+          "expr": "rate(process_io_write_count_total{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "hide": false,
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - write iops",
@@ -364,7 +364,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "rate(process_io_read_bytes{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
+          "expr": "rate(process_io_read_bytes_total{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - read bytes",
           "queryType": "randomWalk",
@@ -373,7 +373,7 @@
         },
         {
           "editorMode": "code",
-          "expr": "rate(process_io_write_bytes{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
+          "expr": "rate(process_io_write_bytes_total{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "hide": false,
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - write bytes",
@@ -621,7 +621,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "rate(process_ctx_switch_voluntary_count{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
+          "expr": "rate(process_ctx_switch_voluntary_count_total{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - voluntary ctx",
           "queryType": "randomWalk",
@@ -630,7 +630,7 @@
         },
         {
           "editorMode": "code",
-          "expr": "rate(process_ctx_switch_involuntary_count{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
+          "expr": "rate(process_ctx_switch_involuntary_count_total_total{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "hide": false,
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - involuntary ctx",

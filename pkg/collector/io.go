@@ -11,25 +11,25 @@ import (
 
 var (
 	readCount = prometheus.NewDesc(
-		prometheus.BuildFQName(namespace, ioSubsystem, "read_count"),
+		prometheus.BuildFQName(namespace, ioSubsystem, "read_count_total"),
 		"Process io read count",
 		commonLabels,
 		nil,
 	)
 	writeCount = prometheus.NewDesc(
-		prometheus.BuildFQName(namespace, ioSubsystem, "write_count"),
+		prometheus.BuildFQName(namespace, ioSubsystem, "write_count_total"),
 		"Process io write count",
 		commonLabels,
 		nil,
 	)
 	readBytes = prometheus.NewDesc(
-		prometheus.BuildFQName(namespace, ioSubsystem, "read_bytes"),
+		prometheus.BuildFQName(namespace, ioSubsystem, "read_bytes_total"),
 		"Process io read bytes",
 		commonLabels,
 		nil,
 	)
 	writeBytes = prometheus.NewDesc(
-		prometheus.BuildFQName(namespace, ioSubsystem, "write_bytes"),
+		prometheus.BuildFQName(namespace, ioSubsystem, "write_bytes_total"),
 		"Process io write bytes",
 		commonLabels,
 		nil,

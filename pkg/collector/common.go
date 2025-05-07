@@ -11,13 +11,13 @@ import (
 
 var (
 	ctxSwitchVoluntary = prometheus.NewDesc(
-		prometheus.BuildFQName(namespace, ctxSwitchSubsystem, "voluntary_count"),
+		prometheus.BuildFQName(namespace, ctxSwitchSubsystem, "voluntary_count_total"),
 		"Process ctx switch voluntary count",
 		commonLabels,
 		nil,
 	)
 	ctxSwitchInVoluntary = prometheus.NewDesc(
-		prometheus.BuildFQName(namespace, ctxSwitchSubsystem, "involuntary_count"),
+		prometheus.BuildFQName(namespace, ctxSwitchSubsystem, "involuntary_count_total"),
 		"Process ctx switch involuntary count",
 		commonLabels,
 		nil,
