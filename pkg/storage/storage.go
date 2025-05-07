@@ -64,7 +64,7 @@ func (s *Storage) shouldFetchMetric(cmdline string) bool {
 
 	if len(s.include) > 0 {
 		for _, i := range s.include {
-			if i != "" && strings.Contains(cmdline, i) {
+			if i == "" || strings.Contains(cmdline, i) {
 				return true
 			}
 		}

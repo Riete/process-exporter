@@ -4,6 +4,8 @@ import (
 	"log"
 	"strconv"
 
+	"github.com/shirou/gopsutil/v3/net"
+
 	"github.com/prometheus/procfs"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -12,10 +14,16 @@ import (
 )
 
 var (
-	networkConnection = prometheus.NewDesc(
-		prometheus.BuildFQName(namespace, networkSubsystem, "connections"),
-		"Process network connections",
+	networkTCPConnection = prometheus.NewDesc(
+		prometheus.BuildFQName(namespace, networkSubsystem, "tcp_connections"),
+		"Process network tcp connections",
 		commonLabels,
+		nil,
+	)
+	networkTCPConnectionStatus = prometheus.NewDesc(
+		prometheus.BuildFQName(namespace, networkSubsystem, "tcp_connections_status"),
+		"Process network tcp connections status",
+		append(commonLabels, "status"),
 		nil,
 	)
 	networkReceiveBytes = prometheus.NewDesc(
@@ -37,7 +45,8 @@ type NetworkCollector struct {
 }
 
 func (n NetworkCollector) Describe(descs chan<- *prometheus.Desc) {
-	descs <- networkConnection
+	descs <- networkTCPConnection
+	descs <- networkTCPConnectionStatus
 	descs <- networkReceiveBytes
 	descs <- networkTransmitBytes
 }
@@ -48,12 +57,18 @@ func (n NetworkCollector) Collect(metrics chan<- prometheus.Metric) {
 	for p := range ch {
 		cmdline := n.s.ProcessCmdline(p.Pid)
 		pid := strconv.Itoa(int(p.Pid))
-
-		conn, err := p.Connections()
+		tcpConns, err := net.ConnectionsPid("tcp", p.Pid)
 		if err != nil {
-			log.Printf("Get [%s] Process Network Connections Error: %v\n", cmdline, err)
+			log.Printf("Get [%s] Process Network TCP Connections Error: %v\n", cmdline, err)
 		} else {
-			metrics <- prometheus.MustNewConstMetric(networkConnection, prometheus.GaugeValue, float64(len(conn)), pid, cmdline)
+			connStatus := make(map[string]float64)
+			for _, c := range tcpConns {
+				connStatus[c.Status] += 1
+			}
+			for s, c := range connStatus {
+				metrics <- prometheus.MustNewConstMetric(networkTCPConnectionStatus, prometheus.GaugeValue, c, pid, cmdline, s)
+			}
+			metrics <- prometheus.MustNewConstMetric(networkTCPConnection, prometheus.GaugeValue, float64(len(tcpConns)), pid, cmdline)
 		}
 
 		pn, err := procfs.NewProc(int(p.Pid))

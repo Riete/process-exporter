@@ -17,13 +17,17 @@
 
 ## Memory Metrics
 ### process_memory_rss_bytes
-* 进程RSS内存使用量, 通用标签m
+* 进程RSS内存使用量, 通用标签
 * 查询表达式: `process_memory_rss_bytes`
 
 ## Network Metrics
-### process_network_connections
-* 进程网络连接数, 通用标签
-* 查询表达式: `process_network_connections`
+### process_network_tcp_connections
+* 进程网络TCP连接数, 通用标签
+* 查询表达式: `process_network_tcp_connections`
+
+### process_network_tcp_connections_status
+* 进程网络TCP连接状态, 除通用标签外, 有个`status`标签
+* 查询表达式: `process_network_tcp_connections_status`
 
 ### process_network_receive_bytes_total
 * 进程网络接受流量, 通用标签
