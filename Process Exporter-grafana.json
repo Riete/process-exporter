@@ -16,26 +16,20 @@
     ]
   },
   "editable": true,
-  "fiscalYearStartMonth": 0,
+  "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 86,
+  "iteration": 1746585795914,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-      },
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "axisSoftMax": 1,
@@ -44,11 +38,11 @@
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
+              "graph": false,
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -56,14 +50,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": false
           },
           "mappings": [],
           "thresholds": {
@@ -100,31 +87,28 @@
         "tooltip": {
           "mode": "multi",
           "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "sum(rate(process_cpu_seconds_total{instance=\"$instance\", cmdline=~\"$cmdline\"}[3m])) by (pid, cmdline, mode)",
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - {{mode}}",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "sum(rate(process_cpu_seconds_total{instance=\"$instance\", cmdline=~\"$cmdline\"}[3m])) by (pid, cmdline)",
           "hide": false,
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - total",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "B"
         }
@@ -133,19 +117,13 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-      },
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -153,11 +131,11 @@
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
+              "graph": false,
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -165,14 +143,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": false
           },
           "mappings": [],
           "thresholds": {
@@ -209,18 +180,18 @@
         "tooltip": {
           "mode": "multi",
           "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "process_memory_rss_bytes{instance=\"$instance\", cmdline=~\"$cmdline\"}",
           "instant": false,
           "legendFormat": "pid:{{pid}} {{cmdline}} - rss",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "A"
         }
@@ -229,19 +200,13 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-      },
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -249,11 +214,11 @@
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
+              "graph": false,
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -261,14 +226,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": false
           },
           "mappings": [],
           "thresholds": {
@@ -305,31 +263,28 @@
         "tooltip": {
           "mode": "multi",
           "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "rate(process_io_read_count{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - read iops",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "rate(process_io_write_count{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "hide": false,
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - write iops",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "B"
         }
@@ -338,19 +293,13 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-      },
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -358,11 +307,11 @@
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
+              "graph": false,
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -370,14 +319,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": false
           },
           "mappings": [],
           "thresholds": {
@@ -414,31 +356,28 @@
         "tooltip": {
           "mode": "multi",
           "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "rate(process_io_read_bytes{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - read bytes",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "rate(process_io_write_bytes{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "hide": false,
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - write bytes",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "B"
         }
@@ -447,19 +386,13 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-      },
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -467,11 +400,11 @@
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
+              "graph": false,
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -479,14 +412,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": false
           },
           "mappings": [],
           "thresholds": {
@@ -522,18 +448,18 @@
         "tooltip": {
           "mode": "multi",
           "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "process_threads_count{instance=\"$instance\", cmdline=~\"$cmdline\"}",
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}}",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "A"
         }
@@ -542,19 +468,13 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-      },
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -562,11 +482,11 @@
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
+              "graph": false,
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -574,14 +494,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": false
           },
           "mappings": [],
           "thresholds": {
@@ -617,18 +530,18 @@
         "tooltip": {
           "mode": "multi",
           "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "process_fds_count{instance=\"$instance\", cmdline=~\"$cmdline\"}",
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}}",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "A"
         }
@@ -637,10 +550,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-      },
+      "datasource": "prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -648,9 +558,6 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -658,11 +565,11 @@
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
+              "graph": false,
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -670,14 +577,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": false
           },
           "mappings": [],
           "thresholds": {
@@ -713,31 +613,28 @@
         "tooltip": {
           "mode": "multi",
           "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "rate(process_ctx_switch_voluntary_count{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - voluntary ctx",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "rate(process_ctx_switch_involuntary_count{instance=\"$instance\", cmdline=~\"$cmdline\"}[5m])",
           "hide": false,
           "instant": false,
           "legendFormat": "pid: {{pid}} {{cmdline}} - involuntary ctx",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "B"
         }
@@ -746,19 +643,13 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-      },
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -766,11 +657,11 @@
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
+              "graph": false,
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -778,14 +669,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": false
           },
           "mappings": [],
           "thresholds": {
@@ -821,39 +705,44 @@
         "tooltip": {
           "mode": "multi",
           "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
+          "datasource": "prometheus",
           "editorMode": "code",
-          "expr": "process_network_connections{instance=\"$instance\", cmdline=~\"$cmdline\"}",
+          "exemplar": true,
+          "expr": "process_network_tcp_connections{instance=\"$instance\", cmdline=~\"$cmdline\"}",
           "instant": false,
-          "legendFormat": "pid: {{pid}} - connections",
+          "interval": "",
+          "legendFormat": "pid: {{pid}} - tcp connections",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "process_network_tcp_connections_status{instance=\"$instance\", cmdline=~\"$cmdline\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "pid: {{pid}} - tcp connections status",
+          "refId": "B"
         }
       ],
-      "title": "Network",
+      "title": "Network TCP Connections",
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-      },
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -861,11 +750,11 @@
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
+              "graph": false,
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -873,14 +762,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": false
           },
           "mappings": [],
           "thresholds": {
@@ -916,18 +798,18 @@
         "tooltip": {
           "mode": "single",
           "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
         }
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "baa21013-d57c-457e-8209-d09567d50bbe"
-          },
           "editorMode": "code",
           "expr": "process_total_count{instance=\"$instance\"}",
           "instant": false,
           "legendFormat": "total process",
+          "queryType": "randomWalk",
           "range": true,
           "refId": "A"
         }
@@ -937,19 +819,26 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 39,
+  "schemaVersion": 27,
+  "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
+        "allValue": null,
         "current": {
-          "selected": false,
-          "text": "10.102.150.10:10921",
-          "value": "10.102.150.10:10921"
+          "isNone": true,
+          "selected": true,
+          "text": "None",
+          "value": ""
         },
+        "datasource": null,
         "definition": "label_values(process_cpu_seconds_total,instance)",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": false,
+        "label": null,
         "multi": false,
         "name": "instance",
         "options": [],
@@ -962,24 +851,31 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "type": "query"
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       },
       {
+        "allValue": null,
         "current": {
           "selected": true,
+          "tags": [],
           "text": [
-            "./process-exporter",
-            "/opt/.vamtoo/dsm/bin/dsm-client"
+            "All"
           ],
           "value": [
-            "./process-exporter",
-            "/opt/.vamtoo/dsm/bin/dsm-client"
+            "$__all"
           ]
         },
+        "datasource": null,
         "definition": "label_values(process_cpu_seconds_total{instance=\"$instance\"},cmdline)",
         "description": "",
+        "error": null,
         "hide": 0,
         "includeAll": true,
+        "label": null,
         "multi": true,
         "name": "cmdline",
         "options": [],
@@ -992,7 +888,11 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "type": "query"
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
@@ -1004,6 +904,5 @@
   "timezone": "",
   "title": "Process Exporter",
   "uid": "ca4096ac-88e7-4c44-b663-6ffa7887503e",
-  "version": 6,
-  "weekStart": ""
+  "version": 5
 }
